@@ -24,14 +24,13 @@ namespace Trening.Controllers
         public AccessTokenViewModel Login(UserLoginModel userLogin)
         {
             var tokenString = loginUtil.Login(userLogin.username, userLogin.password);
-
             if (tokenString != string.Empty)
             {
                 var expireDate = DateTime.Now.AddHours(1);
                 db.accesstokens.Add(new accesstokens { token = tokenString, expires = expireDate, created = DateTime.Now });
                 db.SaveChanges();
 
-                return new AccessTokenViewModel { accessToken = tokenString, expireDate = expireDate };
+                return new AccessTokenViewModel { accessToken = tokenString, expireDate = expireDate, };
             }
             else
             {

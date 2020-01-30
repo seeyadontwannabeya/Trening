@@ -83,10 +83,12 @@ namespace Trening.Controllers
             }
 
             var ts = new TrainingSchema(trainingprogram);
-            trainingprogram.Trainingprogram1 = ts.GenerateSchema();
+            string trainSchema = ts.GenerateSchema();
+            trainingprogram.Trainingprogram1 = "1";
             trainingprogram.RegID = 1;
             db.Trainingprogram.Add(trainingprogram);
             db.SaveChanges();
+            trainingprogram.Trainingprogram1 = trainSchema;
 
             return CreatedAtRoute("DefaultApi", new { id = trainingprogram.ID }, trainingprogram);
         }

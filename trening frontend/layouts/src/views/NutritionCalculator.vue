@@ -5,30 +5,30 @@
     <br />
     <label for="age">Age?</label>
     <div id="UserRow">
-      <input type="text" id="age" v-model="Age" />
+      <input type="text" id="age" v-model="input.Age" />
     </div>
     <br />
 
     <div id="UserRow1"></div>
-    <input type="radio" value="male" id="male" v-model="Gender" />
+    <input type="radio" value="male" id="male" v-model="input.Gender" />
     <label for="male">Male</label>
 
-    <input type="radio" value="female" id="female" v-model="Gender" />
+    <input type="radio" value="female" id="female" v-model="input.Gender" />
     <label for="female">Female</label>
     <br />
 
     <label for="height">How tall are you?</label>
     <div id="UserRow">
-      <input type="text" id="height" v-model="Height" />
+      <input type="text" id="height" v-model="input.Height" />
     </div>
     <br />
 
     <label for="weight">How much do you weigh?</label>
     <div id="UserRow">
-      <input type="text" id="weight" v-model="Weight" />
+      <input type="text" id="weight" v-model="input.Weight" />
     </div>
     <br />
-    <span>Activityfactor: {{ Activityfactor }}</span>
+    <span>Activityfactor: {{ input.Activityfactor }}</span>
     <div class="slidecontainer">
       <input
         type="range"
@@ -38,12 +38,12 @@
         step="0.1"
         class="slider"
         id="myRange"
-        v-model="Activityfactor"
+        v-model="input.Activityfactor"
       />
     </div>
-    <button type="submit" @click="say(Gender, Age, Height, Weight, Activityfactor)">Submit</button>
+    <button type="button" v-on:click="submit()">submit</button>
     <br />
-    <span>Kcal: {{ KcalResult }}</span>
+    <span>Kcal: {{ input.KcalResult }}</span>
   </div>
 </template>
 
@@ -52,24 +52,22 @@ import axios from "axios";
 
 export default {
   methods: {
-    say: function(Gender, Age, Height, Weight, Activityfactor) {
-      console.log(Gender + Age + Height + Weight + Activityfactor);
-
+    submit: function() {
       axios
         .post("https://localhost:44368/api/CalcDatas", {
-          Gender: Gender,
-          Age: Age,
-          Height: Height,
-          Weight: Weight,
-          Activityfactor: Activityfactor
+          Gender: this.input.Gender,
+          Age: this.input.Age,
+          Height: this.input.Height,
+          Weight: this.input.Weight,
+          Activityfactor: this.input.Activityfactor
         })
         .then(response => {
           this.success = "Data saved successfully";
           this.response = JSON.stringify(response, null, 2);
-          this.KcalResult = response.data.KcalResult;
+          this.input.KcalResult = response.data.KcalResult;
         })
         .catch(error => {
-          this.response = "Error: " + error.response.status;
+          this.response = "Error: " + error.response;
         });
     }
   },
@@ -77,12 +75,14 @@ export default {
 
   data: function() {
     return {
-      Gender: "",
-      Age: "",
-      Height: "",
-      Weight: "",
-      Activityfactor: "1.3",
-      KcalResult: ""
+      input: {
+        Gender: "",
+        Age: "",
+        Height: "",
+        Weight: "",
+        Activityfactor: "1.3",
+        KcalResult: ""
+      }
     };
   }
 };

@@ -3,18 +3,15 @@
     <h3>Sign up</h3>
     <label for="email">E-mail</label>
     <div id="UserRow">
-      <input type="email" id="email" v-model="Email" />
+      <input type="email" id="email" v-model="input.username" />
     </div>
     <br />
     <label for="password">Password</label>
     <div id="UserRow">
-      <input type="password" id="password" v-model="Password" />
+      <input type="password" id="password" v-model="input.password" />
     </div>
     <br />
-    <h1>{selectedPage}</h1>
-    <br />
-
-    <button type="submit" @click="say(Email, Password)">Submit</button>
+    <button type="button" v-on:click="submit()">Submit</button>
   </div>
 </template>
 
@@ -23,20 +20,20 @@ import axios from "axios";
 
 export default {
   methods: {
-    say: function(Email, Password) {
-      console.log(Email + Password);
-
+    submit() {
       axios
         .post("https://localhost:44368/api/UserRegistrations", {
-          Email: Email,
-          Password: Password
+          Email: this.input.username,
+          Password: this.input.password
         })
         .then(response => {
           this.success = "Data saved successfully";
           this.response = JSON.stringify(response, null, 2);
+          this.$router.replace({ name: "login" });
         })
         .catch(error => {
           this.response = "Error: " + error.response.status;
+          this.$router.replace({ name: "login" });
         });
     }
   },
@@ -44,8 +41,10 @@ export default {
 
   data: function() {
     return {
-      Email: "",
-      Password: ""
+      input: {
+        username: "",
+        password: ""
+      }
     };
   }
 };
