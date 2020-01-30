@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TreningModelStoreContainer" CdmEntityContainer="TreningEntities">
+    <EntitySetMapping Name="accesstokens">
+      <EntityTypeMapping TypeName="TreningModel.accesstokens">
+        <MappingFragment StoreEntitySet="accesstokens">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="token" ColumnName="token" />
+          <ScalarProperty Name="expires" ColumnName="expires" />
+          <ScalarProperty Name="created" ColumnName="created" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CalcData">
+      <EntityTypeMapping TypeName="TreningModel.CalcData">
+        <MappingFragment StoreEntitySet="CalcData">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Height" ColumnName="Height" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Weight" ColumnName="Weight" />
+          <ScalarProperty Name="Activityfactor" ColumnName="Activityfactor" />
+          <ScalarProperty Name="Fat" ColumnName="Fat" />
+          <ScalarProperty Name="Carbs" ColumnName="Carbs" />
+          <ScalarProperty Name="Protein" ColumnName="Protein" />
+          <ScalarProperty Name="KcalResult" ColumnName="KcalResult" />
+          <ScalarProperty Name="KcalPlusMinus" ColumnName="KcalPlusMinus" />
+          <ScalarProperty Name="created" ColumnName="created" />
+          <ScalarProperty Name="RegID" ColumnName="RegID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Chat">
+      <EntityTypeMapping TypeName="TreningModel.Chat">
+        <MappingFragment StoreEntitySet="Chat">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Sender" ColumnName="Sender" />
+          <ScalarProperty Name="Reciever" ColumnName="Reciever" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="created" ColumnName="created" />
+          <ScalarProperty Name="RegID" ColumnName="RegID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Login">
+      <EntityTypeMapping TypeName="TreningModel.Login">
+        <MappingFragment StoreEntitySet="Login">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Pasword" ColumnName="Pasword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Trainingprogram">
+      <EntityTypeMapping TypeName="TreningModel.Trainingprogram">
+        <MappingFragment StoreEntitySet="Trainingprogram">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TrainingExperience" ColumnName="TrainingExperience" />
+          <ScalarProperty Name="Trainingdays" ColumnName="Trainingdays" />
+          <ScalarProperty Name="Goals" ColumnName="Goals" />
+          <ScalarProperty Name="Trainingprogram1" ColumnName="Trainingprogram" />
+          <ScalarProperty Name="created" ColumnName="created" />
+          <ScalarProperty Name="RegID" ColumnName="RegID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserRegistration">
+      <EntityTypeMapping TypeName="TreningModel.UserRegistration">
+        <MappingFragment StoreEntitySet="UserRegistration">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="created" ColumnName="created" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
