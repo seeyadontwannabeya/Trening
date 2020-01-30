@@ -3,12 +3,12 @@
     <h3>Sign up</h3>
     <label for="email">E-mail</label>
     <div id="UserRow">
-      <input type="text" id="email" v-model="Email" />
+      <input type="email" id="email" v-model="Email" />
     </div>
     <br />
     <label for="password">Password</label>
     <div id="UserRow">
-      <input type="text" id="password" v-model="Password" />
+      <input type="password" id="password" v-model="Password" />
     </div>
     <br />
 
@@ -48,7 +48,7 @@
     </div>
     <button
       type="submit"
-      @click="say(Email, Password, Height, Gender, Age, Weight, Activityfactor)"
+      @click="say(Email, Password, Gender, Age, Height, Weight, Activityfactor)"
     >Submit</button>
   </div>
 </template>
@@ -61,24 +61,28 @@ export default {
     say: function(
       Email,
       Password,
-      Height,
       Gender,
       Age,
+      Height,
       Weight,
       Activityfactor
     ) {
-      console.log(
-        Email + Password + Height + Gender + Age + Weight + Activityfactor
-      );
-      axios
-        .post("https://localhost:44332/api/Registrations", {
-          Email: Email,
-          Password: Password,
+      var userValues = [
+        {
           Height: Height,
           Gender: Gender,
           Age: Age,
           Weight: Weight,
-          Activity: Activityfactor
+          Activityfactor: Activityfactor
+        }
+      ];
+      console.log(Email + Password);
+
+      axios
+        .post("https://localhost:44332/api/Registrations", {
+          Email: Email,
+          Pasword: Password,
+          userValues: userValues
         })
         .then(response => {
           this.success = "Data saved successfully";
@@ -87,8 +91,6 @@ export default {
         .catch(error => {
           this.response = "Error: " + error.response.status;
         });
-      this.name = "";
-      this.email = "";
     }
   },
   name: "UserRegistration",
@@ -96,12 +98,7 @@ export default {
   data: function() {
     return {
       Email: "",
-      Password: "",
-      Gender: "",
-      Age: "",
-      Height: "",
-      Weight: "",
-      Activityfactor: ""
+      Password: ""
     };
   }
 };
